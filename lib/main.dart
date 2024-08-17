@@ -1,3 +1,4 @@
+import 'package:crud_app/views/sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -15,6 +16,6 @@ class CrudApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SignIn();
   }
 }
