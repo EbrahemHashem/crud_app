@@ -5,6 +5,7 @@ import 'package:crud_app/views/sign_up_view.dart';
 import 'package:crud_app/widgets/custom_button.dart';
 import 'package:crud_app/widgets/custom_form_field.dart';
 import 'package:crud_app/widgets/custom_remember.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatelessWidget {
@@ -90,7 +91,14 @@ class SignIn extends StatelessWidget {
                         password: password!,
                       );
                     } on FirebaseAuthException catch (e) {
-                      if (e.code == 'user-not-found') {
+                      // print(e);
+                      if (e.code == 'The email address is badly formatted.') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Email is not correct'),
+                          ),
+                        );
+                      } else if (e.code == 'user-not-found') {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('No user found for that email.'),
